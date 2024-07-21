@@ -7,7 +7,7 @@ import { Search } from "../pages/Search";
 
 export const AllRoutes = () => {
   return (
-    <Fragment>
+    <div className="dark:bg-slate-800">
       <Routes>
         <Route path="/" element={<MovieList />} />
         <Route path="movie/:id" element={<MovieDetails />} />
@@ -17,6 +17,6 @@ export const AllRoutes = () => {
         <Route path="movies/search" element={<Search />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </Fragment>
+    </div>
   );
 };
