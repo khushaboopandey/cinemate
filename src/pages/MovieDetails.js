@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export const MovieDetails = () => {
+export const MovieDetails = ({ title }) => {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const image = `https:image.tmdb.org/t/p/w500/${movie.poster_path}`;
@@ -16,6 +16,10 @@ export const MovieDetails = () => {
     }
     fetchMovie();
   }, []);
+
+  useEffect(() => {
+    document.title = `${title} / Cinemate`;
+  });
 
   return (
     <main>

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export const PageNotFound = () => {
+  useEffect(() => {
+    document.title = `Page Not Found / Cinemate`;
+  });
+
   return (
     <main>
       <section className="flex flex-col justify-center px-2">
