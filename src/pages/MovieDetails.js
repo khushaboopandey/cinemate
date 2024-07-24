@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useTitle from "../hooks/useTitle";
 
 export const MovieDetails = ({ title }) => {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const image = `https:image.tmdb.org/t/p/w500/${movie.poster_path}`;
-
+  useTitle(movie.title);
   useEffect(() => {
     async function fetchMovie() {
       const res = await fetch(
@@ -16,10 +17,6 @@ export const MovieDetails = ({ title }) => {
     }
     fetchMovie();
   }, []);
-
-  useEffect(() => {
-    document.title = `${title} / Cinemate`;
-  });
 
   return (
     <main>
