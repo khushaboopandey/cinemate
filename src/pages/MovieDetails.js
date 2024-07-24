@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useTitle from "../hooks/useTitle";
 
@@ -16,7 +16,7 @@ export const MovieDetails = ({ title }) => {
       setMovie(jaon);
     }
     fetchMovie();
-  }, []);
+  }, [params.id]);
 
   return (
     <main>

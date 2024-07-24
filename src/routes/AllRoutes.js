@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 import { MovieDetails } from "../pages/MovieDetails";
 import { MovieList } from "../pages/MovieList";

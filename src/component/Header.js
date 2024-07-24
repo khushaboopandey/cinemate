@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, NavLink } from "react-router-dom";
 
 export const Header = () => {
@@ -103,9 +103,8 @@ export const Header = () => {
                 />
               </form>
             </div>
-            <button onClick={() => setDarkMode(!darkMode)} r>
-              but
-            </button>
+            {/* to do dark mode */}
+            <button onClick={() => setDarkMode(!darkMode)} r></button>
             <button
               onClick={() => setHidden(!hidden)}
               data-collapse-toggle="navbar-search"
