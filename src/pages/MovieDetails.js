@@ -5,7 +5,7 @@ import useTitle from "../hooks/useTitle";
 export const MovieDetails = ({ title }) => {
   const params = useParams();
   const [movie, setMovie] = useState({});
-  const image = `https:image.tmdb.org/t/p/w500/${movie.poster_path}`;
+  const image = `https:image.tmdb.org/t/p/w500/${movie?.poster_path}`;
   useTitle(movie.title);
   useEffect(() => {
     async function fetchMovie() {
@@ -44,7 +44,7 @@ export const MovieDetails = ({ title }) => {
 
           <div className="flex items-center">
             <svg
-              class="w-4 h-4 text-yellow-300 me-1"
+              className="w-4 h-4 text-yellow-300 me-1"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
