@@ -32,7 +32,7 @@ export const Header = () => {
 
   return (
     <header>
-      <nav className="bg-white border-b-2 py-2 border-gray-200 dark:bg-gray-900 dark:bottom-b-1 dark:border-gray-900 ">
+      <nav className="bg-white border-b-2 py-2 border-gray-200 dark:bg-gray-900 dark:border-b-1 dark:border-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             to="/"
@@ -47,14 +47,52 @@ export const Header = () => {
               Cinemate
             </span>
           </Link>
+
+          {/* Mobile Navigation Buttons */}
           <div id="mobileNav" className="flex md:order-2">
+            {/* Dark Mode Toggle Button */}
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              data-tooltip-target="default-card-example-toggle-dark-mode-tooltip"
+              type="button"
+              data-toggle-dark="dark"
+              className="flex items-center w-9 h-9 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 p-2.4 mr-2"
+            >
+              {darkMode ? (
+                <svg
+                  data-toggle-icon="sun"
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-11a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1Zm0 12a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1ZM4.343 5.757a1 1 0 0 0 1.414-1.414L4.343 2.929a1 1 0 0 0-1.414 1.414l1.414 1.414Zm11.314 8.486a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM4 10a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm15-1h-2a1 1 0 1 0 0 2h2a1 1 0 0 0 0-2ZM4.343 14.243l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414a1 1 0 0 0-1.414-1.414ZM14.95 6.05a1 1 0 0 0 .707-.293l1.414-1.414a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 .707 1.707Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  data-toggle-icon="moon"
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 20"
+                >
+                  <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.52 2a1 1 0 0 0 0-.969A1.035 1.035 0 0 0 9.687.5h-.113a9.5 9.5 0 1 0 8.222 14.247 1 1 0 0 0 .004-.997Z"></path>
+                </svg>
+              )}
+
+              <span className="sr-only">Toggle dark/light mode</span>
+            </button>
+
+            {/* Mobile Search Button */}
             <button
               onClick={() => setHidden(!hidden)}
               type="button"
               data-collapse-toggle="navbar-search"
               aria-controls="navbar-search"
               aria-expanded="false"
-              className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
+              className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5  me-1"
             >
               <svg
                 className="w-5 h-5"
@@ -73,6 +111,8 @@ export const Header = () => {
               </svg>
               <span className="sr-only">Search</span>
             </button>
+
+            {/* Desktop Search Form */}
             <div className="relative hidden md:block">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg
@@ -103,8 +143,8 @@ export const Header = () => {
                 />
               </form>
             </div>
-            {/* to do dark mode */}
-            <button onClick={() => setDarkMode(!darkMode)} r></button>
+
+            {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setHidden(!hidden)}
               data-collapse-toggle="navbar-search"
@@ -131,6 +171,8 @@ export const Header = () => {
               </svg>
             </button>
           </div>
+
+          {/* Navigation Links */}
           <div
             className={`items-center justify-between ${
               hidden ? "hidden" : ""
@@ -161,6 +203,7 @@ export const Header = () => {
                   name="search"
                   id="search-navbar"
                   className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  autoComplete="off"
                   placeholder="Search..."
                 />
               </form>
