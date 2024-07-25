@@ -5,7 +5,9 @@ import useTitle from "../hooks/useTitle";
 export const MovieDetails = ({ title }) => {
   const params = useParams();
   const [movie, setMovie] = useState({});
-  const image = `https:image.tmdb.org/t/p/w500/${movie?.poster_path}`;
+  const image = movie?.poster_path
+    ? `https:image.tmdb.org/t/p/w500/${movie?.poster_path}`
+    : "https:image.tmdb.org/t/p/w500//nP6RliHjxsz4irTKsxe8FRhKZYl.jpg";
   useTitle(movie.title);
   useEffect(() => {
     async function fetchMovie() {
@@ -20,7 +22,7 @@ export const MovieDetails = ({ title }) => {
 
   return (
     <main>
-      <section className="flex justify-around flex-wrap py-5">
+      <section className="flex justify-around flex-wrap py-9">
         <div className="max-w-sm">
           <img src={image} alt={movie.title} />
         </div>
