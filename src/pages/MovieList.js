@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Card } from "../component/Card";
 import useFetch from "../hooks/useFetch";
 import useTitle from "../hooks/useTitle";
+import ErrorPage from "./ErrorPage";
+// import "./MovieList.css"; // Import the CSS file
 
 export const MovieList = ({ apiPath, title }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data: movies } = useFetch(apiPath, "", currentPage);
+  const { data: movies, error } = useFetch(apiPath, "", currentPage);
 
   useTitle(title);
 
@@ -13,15 +15,19 @@ export const MovieList = ({ apiPath, title }) => {
     setCurrentPage(page);
   };
 
+  if (error) {
+    return <ErrorPage message={error} />;
+  }
+
   return (
     <main>
       <section className="max-w-7xl mx-auto py-7">
-        <div className="flex justify-start flex-wrap others:justify-evenly">
+        <div className="flex justify-start flex-wrap">
           {movies.map((movie) => (
             <Card key={movie.id} movie={movie} />
           ))}
         </div>
-        {/* TODO Move Pagination code to its seperate comp*/}
+        {/* Pagination */}
         <div className="m-auto text-center py-5">
           <nav aria-label="Page navigation example">
             <ul className="inline-flex -space-x-px text-sm">
