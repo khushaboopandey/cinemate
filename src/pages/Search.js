@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Card } from "../component/Card";
+import { Pagination } from "../component/Pagination";
 import useFetch from "../hooks/useFetch";
 import useTitle from "../hooks/useTitle";
 
 export const Search = ({ apiPath, title }) => {
   const [searchParams] = useSearchParams();
   const queryTerms = searchParams.get("q");
-  const { data: movies } = useFetch(apiPath, queryTerms);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data: movies } = useFetch(apiPath, queryTerms, currentPage);
 
   useTitle(`Search Result for ${queryTerms}`);
 
@@ -25,6 +28,7 @@ export const Search = ({ apiPath, title }) => {
             <Card key={movie.id} movie={movie} />
           ))}
         </div>
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </section>
     </main>
   );
