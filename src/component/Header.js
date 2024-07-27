@@ -3,6 +3,7 @@ import { Link, useNavigate, NavLink } from "react-router-dom";
 
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
+  const [search, setSearch] = useState("");
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
@@ -26,8 +27,19 @@ export const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const queryTerms = e.target.search.value;
-    e.target.reset();
-    return navigate(`/search?q=${queryTerms}`);
+    if (queryTerms.trim()) {
+      navigate(`/search?q=${queryTerms}`);
+    } else {
+      navigate("/");
+    }
+  };
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+    if (!e.target.value.trim()) {
+      // Reset to initial data if the search input is cleared
+      navigate("/");
+    }
   };
 
   return (
@@ -53,9 +65,7 @@ export const Header = () => {
             {/* Dark Mode Toggle Button */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              data-tooltip-target="default-card-example-toggle-dark-mode-tooltip"
               type="button"
-              data-toggle-dark="dark"
               className="flex items-center w-9 h-9 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 p-2.4 mr-2"
             >
               {darkMode ? (
@@ -81,7 +91,6 @@ export const Header = () => {
                   <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.52 2a1 1 0 0 0 0-.969A1.035 1.035 0 0 0 9.687.5h-.113a9.5 9.5 0 1 0 8.222 14.247 1 1 0 0 0 .004-.997Z"></path>
                 </svg>
               )}
-
               <span className="sr-only">Toggle dark/light mode</span>
             </button>
 
@@ -140,6 +149,8 @@ export const Header = () => {
                   className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search..."
                   autoComplete="off"
+                  value={search}
+                  onChange={handleChange}
                 />
               </form>
             </div>
@@ -204,6 +215,8 @@ export const Header = () => {
                   id="search-navbar"
                   className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   autoComplete="off"
+                  value={search}
+                  onChange={handleChange}
                   placeholder="Search..."
                 />
               </form>
