@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 export const Card = ({ movie }) => {
   const { id, overview, original_title, poster_path } = movie;
   const image = poster_path
-    ? `https:image.tmdb.org/t/p/w500/${poster_path}`
-    : "https:image.tmdb.org/t/p/w500//nP6RliHjxsz4irTKsxe8FRhKZYl.jpg";
+    ? `https:image.tmdb.org/t/p/w500${poster_path}`
+    : "https:image.tmdb.org/t/p/w500/nP6RliHjxsz4irTKsxe8FRhKZYl.jpg";
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-3">
       <Link to={`/movie/${id}`}>
