@@ -4,7 +4,7 @@ const useFetch = (apiPath, queryTerms = "", page = 1) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
 
-  const url = `http://api.themoviedb.org/3/${apiPath}?api_key=${process.env.REACT_APP_API_KEY}&query=${queryTerms}&page=${page}`;
+  const url = `https://api.themoviedb.org/3/${apiPath}?api_key=${process.env.REACT_APP_API_KEY}&query=${queryTerms}&page=${page}`;
 
   useEffect(() => {
     async function fetchMovie() {
