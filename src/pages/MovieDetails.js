@@ -6,8 +6,8 @@ export const MovieDetails = ({ title }) => {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const image = movie?.poster_path
-    ? `https:image.tmdb.org/t/p/w500${movie?.poster_path}`
-    : "https:image.tmdb.org/t/p/w500/nP6RliHjxsz4irTKsxe8FRhKZYl.jpg";
+    ? `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`
+    : "https://image.tmdb.org/t/p/w500/nP6RliHjxsz4irTKsxe8FRhKZYl.jpg";
   useTitle(movie.title);
   useEffect(() => {
     async function fetchMovie() {
